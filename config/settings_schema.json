@@ -1,0 +1,50 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Purelane Dawn Theme",
+    "theme_version": "1.0.0",
+    "theme_author": "Senior Shopify Developer",
+    "theme_documentation_url": "https://github.com/purelane/shopify-theme",
+    "theme_support_url": "https://purelane.com/support"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Brand Primary Teal",
+        "default": "#4b3a8f"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Brand Accent Gold/Leaf",
+        "default": "#b8701c"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Background Mint Ground",
+        "default": "#f4f0fb"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "type_header_font",
+        "label": "Heading Font",
+        "default": "outfit_n8"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "label": "Body Font",
+        "default": "inter_n4"
+      }
+    ]
+  }
+]

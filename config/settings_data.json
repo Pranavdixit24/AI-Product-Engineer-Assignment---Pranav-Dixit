@@ -1,0 +1,24 @@
+{
+  "current": {
+    "color_primary": "#4b3a8f",
+    "color_accent": "#b8701c",
+    "color_background": "#f4f0fb",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "show_ticker": true,
+          "brand_name": "Purelane",
+          "brand_tagline": "Clean, simply"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "brand_name": "Purelane",
+          "brand_tagline": "Clean, simply"
+        }
+      }
+    }
+  }
+}

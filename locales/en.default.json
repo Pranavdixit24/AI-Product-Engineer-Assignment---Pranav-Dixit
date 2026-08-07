@@ -1,0 +1,21 @@
+{
+  "general": {
+    "search": {
+      "search": "Search"
+    },
+    "cart": {
+      "cart": "Cart",
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "on_sale": "Sale",
+      "include_taxes": "Tax included.",
+      "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout."
+    }
+  }
+}
