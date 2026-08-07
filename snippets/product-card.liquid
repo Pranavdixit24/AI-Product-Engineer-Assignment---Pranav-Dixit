@@ -1,0 +1,118 @@
+{% comment %}
+  Renders a product card for Purelane theme grids.
+  Accepts:
+  - card_product: {Object} Shopify Product Object (optional)
+  - badge_label: {String} Optional custom badge (e.g. "Best seller", "Top rated", "New")
+  - custom_rating: {String} Rating label (default: "★ 4.8 · 237 reviews")
+{% endcomment %}
+
+{%- liquid
+  assign is_available = true
+  if card_product != blank and card_product.available == false
+    assign is_available = false
+  endif
+
+  assign badge = badge_label
+  if is_available == false
+    assign badge = 'Sold Out'
+  elsif badge == blank and card_product != blank
+    if card_product.compare_at_price > card_product.price
+      assign badge = 'Sale'
+    endif
+  endif
+
+  assign product_title = 'Purelane Product'
+  if card_product != blank
+    assign product_title = card_product.title
+  endif
+
+  assign product_url = '#'
+  if card_product != blank
+    assign product_url = card_product.url
+  endif
+
+  assign product_price = 20000
+  if card_product != blank
+    assign product_price = card_product.price
+  endif
+
+  assign compare_at_price = 29900
+  if card_product != blank and card_product.compare_at_price > card_product.price
+    assign compare_at_price = card_product.compare_at_price
+  elsif card_product != blank
+    assign compare_at_price = nil
+  endif
+
+  assign discount_percent = 0
+  if compare_at_price and compare_at_price > product_price
+    assign raw_discount = compare_at_price | minus: product_price | times: 100.0 | divided_by: compare_at_price
+    assign discount_percent = raw_discount | round
+  endif
+-%}
+
+<article class="glass card rv">
+  <div class="shot">
+    {%- if badge != blank -%}
+      <span class="pill{% unless is_available %} sold-out{% endunless %}">{{ badge }}</span>
+    {%- endif -%}
+
+    <a href="{{ product_url }}" style="display:contents;" aria-label="{{ product_title | escape }}">
+      {%- if card_product != blank and card_product.featured_image != blank -%}
+        <img
+          src="{{ card_product.featured_image | image_url: width: 400 }}"
+          srcset="{{ card_product.featured_image | image_url: width: 200 }} 200w, {{ card_product.featured_image | image_url: width: 400 }} 400w"
+          sizes="(max-width: 600px) 150px, 200px"
+          alt="{{ card_product.featured_image.alt | default: product_title | escape }}"
+          loading="lazy"
+          width="200"
+          height="200"
+        >
+      {%- else -%}
+        {%- comment -%} Fallback SVG container when no product image exists {%- endcomment -%}
+        <div class="img-fallback" aria-hidden="true">
+          <svg viewBox="0 0 130 200" xmlns="http://www.w3.org/2000/svg" style="height:122px; width:auto;">
+            <defs>
+              <linearGradient id="gFallback" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#04756e"/>
+                <stop offset=".55" stop-color="#4b3a8f"/>
+                <stop offset="1" stop-color="#013f3d"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="65" cy="190" rx="40" ry="7" fill="#01201c" opacity=".5"/>
+            <rect x="31" y="60" width="68" height="120" rx="14" fill="url(#gFallback)"/>
+            <rect x="44" y="36" width="42" height="24" rx="4" fill="#a8bdb2"/>
+            <text x="65" y="120" text-anchor="middle" font-family="Outfit, sans-serif" font-size="8" font-weight="800" fill="#faf7fd">PURELANE</text>
+          </svg>
+        </div>
+      {%- endif -%}
+    </a>
+  </div>
+
+  <h4>
+    <a href="{{ product_url }}">{{ product_title }}</a>
+  </h4>
+
+  <div class="rate">
+    <b>★ 4.8</b> · {{ custom_rating | default: '237 reviews' }}
+  </div>
+
+  <div class="pr">
+    <strong>{{ product_price | money }}</strong>
+    {%- if compare_at_price -%}
+      <s>{{ compare_at_price | money }}</s>
+      {%- if discount_percent > 0 -%}
+        <em>{{ discount_percent }}% off</em>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+
+  {%- if is_available -%}
+    <button type="button" class="btn btn-ghost btn-sm" aria-label="Add {{ product_title | escape }} to cart">
+      Add to cart
+    </button>
+  {%- else -%}
+    <button type="button" class="btn btn-ghost btn-sm" disabled aria-label="{{ product_title | escape }} is sold out">
+      Sold out
+    </button>
+  {%- endif -%}
+</article>

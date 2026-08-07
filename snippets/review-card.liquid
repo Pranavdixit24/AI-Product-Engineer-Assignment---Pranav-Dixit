@@ -1,0 +1,30 @@
+{% comment %}
+  Renders a review card for Purelane reviews rail or voices section.
+  Accepts:
+  - rating: {Number} Star rating count (default: 5)
+  - title: {String} Review headline
+  - body: {String} Review content text
+  - author: {String} Reviewer name
+  - product_tag: {String} Product bought tag
+{% endcomment %}
+
+{%- liquid
+  assign stars = rating | default: 5
+  assign r_title = title | default: 'Works like a charm'
+  assign r_body = body | default: 'Finally an eco option that cleans as well as the chemical detergent I used for years, and it smells better.'
+  assign r_author = author | default: 'Anita'
+  assign r_tag = product_tag | default: 'Laundry detergent'
+-%}
+
+<article class="glass-2 rcard">
+  <div class="st" aria-label="{{ stars }} out of 5 stars">
+    {%- for i in (1..stars) -%}★{%- endfor -%}
+  </div>
+  <h5>{{ r_title | escape }}</h5>
+  <p>{{ r_body | escape }}</p>
+  <div class="who">
+    {%- render 'icon-check' -%}
+    <b>{{ r_author | escape }}</b>
+    <span>&middot; {{ r_tag | escape }}</span>
+  </div>
+</article>
