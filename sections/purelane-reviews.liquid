@@ -1,0 +1,134 @@
+{% comment %}
+  Section 2: Customer Reviews Infinite Marquee Rail
+{% endcomment %}
+
+<section class="sec revband" id="voices" data-scene="1">
+  <div class="wrap">
+    <div class="revhead rv">
+      <span class="kicker">{{ section.settings.kicker | default: "That's what they said" }}</span>
+      <span class="agg"><span class="st">★★★★★</span> <b>{{ section.settings.rating_score | default: '4.8' }}</b> {{ section.settings.rating_count | default: 'from 8,000+ reviews' }}</span>
+      <span class="agg">Loved by <b>{{ section.settings.customers_count | default: '12 lakh+' }}</b> homes</span>
+    </div>
+  </div>
+
+  <div class="revrail rv" aria-label="Customer reviews">
+    <div class="revtrack">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {%- render 'review-card',
+            rating: block.settings.rating,
+            title: block.settings.headline,
+            body: block.settings.body,
+            author: block.settings.author,
+            product_tag: block.settings.product_tag
+          -%}
+        {%- endfor -%}
+        {%- comment -%} Duplicate for seamless infinite loop {%- comment -%}
+        {%- for block in section.blocks -%}
+          {%- render 'review-card',
+            rating: block.settings.rating,
+            title: block.settings.headline,
+            body: block.settings.body,
+            author: block.settings.author,
+            product_tag: block.settings.product_tag
+          -%}
+        {%- endfor -%}
+      {%- else -%}
+        {%- render 'review-card', rating: 5, title: 'Works like a charm', body: 'Finally an eco option that cleans as well as the chemical detergent I used for years, and it smells better.', author: 'Anita', product_tag: 'Laundry detergent' -%}
+        {%- render 'review-card', rating: 5, title: 'Best dishwash ever', body: 'Our old dishwash left my help with dry, cracked skin. That stopped completely after we switched.', author: 'Priya', product_tag: 'Dishwash gel' -%}
+        {%- render 'review-card', rating: 5, title: 'Great product, great packaging', body: 'Very soft on hands with a lovely fragrance, and it feels good to be using far less plastic.', author: 'Sunita', product_tag: 'Liquid handwash' -%}
+        {%- render 'review-card', rating: 5, title: 'Dog friendly', body: 'We switched because chemical floor cleaners were setting off my dog allergy reactions. No reactions since.', author: 'Rohit S.', product_tag: 'Floor cleaner' -%}
+        {%- render 'review-card', rating: 5, title: 'Sparkling taps again', body: 'Hard water had ruined our bathroom fittings. Two sprays and the scale wipes straight off, no scrubbing.', author: 'Verified buyer', product_tag: 'Tap cleaner' -%}
+        {%- render 'review-card', rating: 5, title: 'Works like a charm', body: 'Finally an eco option that cleans as well as the chemical detergent I used for years, and it smells better.', author: 'Anita', product_tag: 'Laundry detergent' -%}
+        {%- render 'review-card', rating: 5, title: 'Best dishwash ever', body: 'Our old dishwash left my help with dry, cracked skin. That stopped completely after we switched.', author: 'Priya', product_tag: 'Dishwash gel' -%}
+        {%- render 'review-card', rating: 5, title: 'Great product, great packaging', body: 'Very soft on hands with a lovely fragrance, and it feels good to be using far less plastic.', author: 'Sunita', product_tag: 'Liquid handwash' -%}
+        {%- render 'review-card', rating: 5, title: 'Dog friendly', body: 'We switched because chemical floor cleaners were setting off my dog allergy reactions. No reactions since.', author: 'Rohit S.', product_tag: 'Floor cleaner' -%}
+        {%- render 'review-card', rating: 5, title: 'Sparkling taps again', body: 'Hard water had ruined our bathroom fittings. Two sprays and the scale wipes straight off, no scrubbing.', author: 'Verified buyer', product_tag: 'Tap cleaner' -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Reviews Rail",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker Text",
+      "default": "That's what they said"
+    },
+    {
+      "type": "text",
+      "id": "rating_score",
+      "label": "Rating Score",
+      "default": "4.8"
+    },
+    {
+      "type": "text",
+      "id": "rating_count",
+      "label": "Rating Subtitle",
+      "default": "from 8,000+ reviews"
+    },
+    {
+      "type": "text",
+      "id": "customers_count",
+      "label": "Customers Badge Count",
+      "default": "12 lakh+"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review Card",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Star Rating",
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "headline",
+          "label": "Review Headline",
+          "default": "Works like a charm"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Review Content",
+          "default": "Finally an eco option that cleans as well as the chemical detergent I used for years, and it smells better."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Reviewer Name",
+          "default": "Anita"
+        },
+        {
+          "type": "text",
+          "id": "product_tag",
+          "label": "Product Tag",
+          "default": "Laundry detergent"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Reviews Rail",
+      "blocks": [
+        { "type": "review", "settings": { "headline": "Works like a charm", "author": "Anita", "product_tag": "Laundry detergent" } },
+        { "type": "review", "settings": { "headline": "Best dishwash ever", "author": "Priya", "product_tag": "Dishwash gel" } },
+        { "type": "review", "settings": { "headline": "Great product, great packaging", "author": "Sunita", "product_tag": "Liquid handwash" } },
+        { "type": "review", "settings": { "headline": "Dog friendly", "author": "Rohit S.", "product_tag": "Floor cleaner" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
