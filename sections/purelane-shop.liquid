@@ -1,0 +1,129 @@
+{% comment %}
+  Section 5: Shop Product Grid Section
+  Renders real Shopify products from selected Collection or Product List,
+  supporting sold-out badges, missing images, and long title line-clamping.
+{% endcomment %}
+
+<section class="sec" id="shop" data-scene="3">
+  <div class="wrap">
+    <div class="panel-head rv">
+      <span class="kicker">{{ section.settings.kicker | default: 'Bestsellers' }}</span>
+      <h2 class="d2" style="margin-top:12px">{{ section.settings.heading | default: 'Loved by 30,000 homes' }}</h2>
+      <div class="rule">
+        <i></i>
+        {%- render 'icon-leaf' -%}
+        <i></i>
+      </div>
+    </div>
+
+    <div class="shelf">
+      {%- liquid
+        assign products_to_show = section.settings.products_to_show | default: 4
+        assign has_products = false
+
+        if section.settings.product_list != blank and section.settings.product_list.count > 0
+          assign has_products = true
+          for prod in section.settings.product_list limit: products_to_show
+            render 'product-card', card_product: prod, badge_label: 'Best seller'
+          endfor
+        elsif section.settings.collection != blank and section.settings.collection.products_count > 0
+          assign has_products = true
+          for prod in section.settings.collection.products limit: products_to_show
+            render 'product-card', card_product: prod, badge_label: 'Best seller'
+          endfor
+        endif
+      -%}
+
+      {%- if has_products == false -%}
+        {%- comment -%} Prototype Fallback Product Cards {%- comment -%}
+        <article class="glass card rv">
+          <div class="shot">
+            <span class="pill">Best seller</span>
+            <span class="pimg p-tap" role="img" aria-label="Tap cleaner and limescale remover spray with carton"></span>
+          </div>
+          <h4>Tap cleaner &amp; limescale remover</h4>
+          <div class="rate"><b>★ 4.8</b> · 237 reviews</div>
+          <div class="pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+          <button type="button" class="btn btn-ghost btn-sm">Add to cart</button>
+        </article>
+
+        <article class="glass card rv rv-d1">
+          <div class="shot">
+            <span class="pill">Best seller</span>
+            <span class="pimg p-kitchen" role="img" aria-label="Foaming kitchen cleaner spray with carton"></span>
+          </div>
+          <h4>Kitchen cleaner, foaming</h4>
+          <div class="rate"><b>★ 4.8</b> · 254 reviews</div>
+          <div class="pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+          <button type="button" class="btn btn-ghost btn-sm">Add to cart</button>
+        </article>
+
+        <article class="glass card rv rv-d2">
+          <div class="shot">
+            <span class="pill">Top rated</span>
+            <span class="pimg p-metal" role="img" aria-label="Copper, bronze and brass cleaner pump bottle with carton"></span>
+          </div>
+          <h4>Copper, bronze &amp; brass cleaner</h4>
+          <div class="rate"><b>★ 4.8</b> · 231 reviews</div>
+          <div class="pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+          <button type="button" class="btn btn-ghost btn-sm">Add to cart</button>
+        </article>
+
+        <article class="glass card rv rv-d3">
+          <div class="shot">
+            <span class="pill">New</span>
+            <span class="pimg p-wm" role="img" aria-label="Washing machine cleaner and descaler tablets carton"></span>
+          </div>
+          <h4>Washing machine cleaner &amp; descaler</h4>
+          <div class="rate"><b>★ 4.8</b> · 183 reviews</div>
+          <div class="pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+          <button type="button" class="btn btn-ghost btn-sm">Add to cart</button>
+        </article>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Shop Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker Text",
+      "default": "Bestsellers"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Loved by 30,000 homes"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Shopify Collection"
+    },
+    {
+      "type": "product_list",
+      "id": "product_list",
+      "label": "Manual Product List (Overrides Collection)"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "label": "Products to display",
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Product Shop Grid"
+    }
+  ]
+}
+{% endschema %}
