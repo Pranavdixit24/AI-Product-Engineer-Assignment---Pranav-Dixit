@@ -1,0 +1,88 @@
+{
+  "sections": {
+    "purelane_hero": {
+      "type": "purelane-hero",
+      "settings": {
+        "heading": "Clean<br>That<br><span class=\"lime\">Lasts</span>",
+        "subtext": "Homecare that works on the toughest grime, made from plants. Kind to your home, your family and the world outside it.",
+        "btn_primary_text": "Shop now",
+        "btn_secondary_text": "How it works"
+      }
+    },
+    "purelane_reviews": {
+      "type": "purelane-reviews",
+      "settings": {
+        "kicker": "That's what they said",
+        "rating_score": "4.8",
+        "rating_count": "from 8,000+ reviews",
+        "customers_count": "12 lakh+"
+      }
+    },
+    "purelane_ingredients": {
+      "type": "purelane-ingredients",
+      "settings": {
+        "heading": "Sourced from nature"
+      }
+    },
+    "purelane_pillars": {
+      "type": "purelane-pillars",
+      "settings": {
+        "p1_title": "Less scrubbing",
+        "p2_title": "Clean ingredients",
+        "p3_title": "Safe around everyone"
+      }
+    },
+    "purelane_proof": {
+      "type": "purelane-proof",
+      "settings": {
+        "kicker": "Why it works",
+        "heading": "Tough on grime.<br>Gentle on everything else."
+      }
+    },
+    "purelane_combos": {
+      "type": "purelane-combos",
+      "settings": {
+        "kicker": "Pre-built to save you money",
+        "heading": "Best selling combos"
+      }
+    },
+    "purelane_bundles": {
+      "type": "purelane-bundles",
+      "settings": {
+        "kicker": "Build your bundle",
+        "heading": "One box. Every room."
+      }
+    },
+    "purelane_shop": {
+      "type": "purelane-shop",
+      "settings": {
+        "kicker": "Bestsellers",
+        "heading": "Loved by 30,000 homes",
+        "products_to_show": 4
+      }
+    },
+    "purelane_trust_bar": {
+      "type": "purelane-trust-bar",
+      "settings": {}
+    },
+    "purelane_signup": {
+      "type": "purelane-signup",
+      "settings": {
+        "kicker": "Join the Purelane Club",
+        "heading": "Get ₹100 off your first bundle"
+      }
+    }
+  },
+  "order": [
+    "purelane_hero",
+    "purelane_reviews",
+    "purelane_ingredients",
+    "purelane_pillars",
+    "purelane_proof",
+    "purelane_combos",
+    "purelane_bundles",
+    "purelane_shop",
+    "purelane_trust_bar",
+    "purelane_signup"
+  ]
+}
