@@ -23,7 +23,7 @@
             product_tag: block.settings.product_tag
           -%}
         {%- endfor -%}
-        {%- comment -%} Duplicate for seamless infinite loop {%- comment -%}
+        {%- comment -%} Duplicate for seamless infinite loop {%- endcomment -%}
         {%- for block in section.blocks -%}
           {%- render 'review-card',
             rating: block.settings.rating,

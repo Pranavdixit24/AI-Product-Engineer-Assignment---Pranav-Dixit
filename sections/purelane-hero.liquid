@@ -6,7 +6,7 @@
 <section class="hero" data-scene="1">
   <div class="hero-grid">
 
-    {%- comment -%} Desktop Badges Rail {%- comment -%}
+    {%- comment -%} Desktop Badges Rail {%- endcomment -%}
     <div class="badges glass-2" aria-label="Product promises">
       <div class="badge">
         <span class="bi">{%- render 'icon-leaf' -%}</span>
@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    {%- comment -%} Left Column Copy {%- comment -%}
+    {%- comment -%} Left Column Copy {%- endcomment -%}
     <div class="hero-copy">
       <h1 class="d1 rv in">
         {{ section.settings.heading | default: 'Clean<br>That<br><span class="lime">Lasts</span>' }}
@@ -51,7 +51,7 @@
         {%- endif -%}
       </div>
 
-      {%- comment -%} Mobile Badge Strip {%- comment -%}
+      {%- comment -%} Mobile Badge Strip {%- endcomment -%}
       <div class="badgestrip rv rv-d4">
         <div class="glass-2">
           {%- render 'icon-leaf' -%}
@@ -68,11 +68,11 @@
       </div>
     </div>
 
-    {%- comment -%} Right Column Interactive Stage {%- comment -%}
+    {%- comment -%} Right Column Interactive Stage {%- endcomment -%}
     <div class="hero-prod" id="heroProd">
       <div class="hstage" id="hstage">
 
-        {%- comment -%} Slide 1: 1 Product {%- comment -%}
+        {%- comment -%} Slide 1: 1 Product {%- endcomment -%}
         {%- assign prod_1 = section.settings.slide_1_product -%}
         <div class="hslide hs1 on" data-n="1">
           {%- if prod_1 != blank and prod_1.featured_image != blank -%}
@@ -90,7 +90,7 @@
           </div>
         </div>
 
-        {%- comment -%} Slide 2: 2 Products {%- comment -%}
+        {%- comment -%} Slide 2: 2 Products {%- endcomment -%}
         {%- assign prod_2 = section.settings.slide_2_product -%}
         <div class="hslide hs2" data-n="2">
           {%- if prod_2 != blank and prod_2.featured_image != blank -%}
@@ -109,7 +109,7 @@
           </div>
         </div>
 
-        {%- comment -%} Slide 3: 3 Products {%- comment -%}
+        {%- comment -%} Slide 3: 3 Products {%- endcomment -%}
         {%- assign prod_3 = section.settings.slide_3_product -%}
         <div class="hslide hs3" data-n="3">
           <span class="hp p-tbtl a d1" role="img" aria-label="Purelane tap cleaner spray bottle"></span>
