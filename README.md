@@ -137,3 +137,85 @@ If given additional development time:
   * Scoped Theme Editor lifecycle events in `assets/purelane.js` to ensure duplicate section instances do not collide.
   * Applied line-clamp and flexbox bounds to handle long product title overflows cleanly.
 * **Systematization for 20 Stores**: To build 20 similar stores efficiently, I would create an automated CLI generator script that compiles a static HTML prototype's CSS variable map into a standardized Dawn-compatible Liquid section bundle.
+
+# Purelane Shopify Theme - Production Implementation
+
+## 📦 Deliverables Submission
+
+### 1. Dev Store Details
+
+**Dev Store URL:** https://jiyjsg-vb.myshopify.com
+
+**Storefront Password:** iggohm
+
+### 2. GitHub Repository
+
+**Repository:** https://github.com/Pranavdixit24/AI-Product-Engineer-Assignment---Pranav-Dixit
+
+**Branch:** `main`
+
+### 3. Metafield & Metaobject Definitions
+
+The theme uses the following custom Shopify metafields and metaobjects:
+
+| Type | Target / Name | Field Key | Type | Description |
+|---|---|---|---|---|
+| Metafield | Product | `reviews.rating` | Decimal | Average star rating (e.g. 4.8) |
+| Metafield | Product | `reviews.count` | Integer | Review count (e.g. 237) |
+| Metafield | Product | `purelane.badge` | Single line text | Custom pill label |
+| Metafield | Product | `purelane.subtitle` | Single line text | Short product note |
+| Metaobject | `purelane_review` | `reviewer_name` | Single line text | Reviewer name |
+| Metaobject | `purelane_review` | `rating` | Integer (1–5) | Star rating score |
+| Metaobject | `purelane_review` | `headline` | Single line text | Short review title |
+| Metaobject | `purelane_review` | `body` | Multi-line text | Full review paragraph |
+| Metaobject | `purelane_review` | `product_tag` | Single line text | Product tag/category |
+
+### 4. Build Notes
+
+#### What I Flagged About the Original File
+
+- **Non-semantic markup:** Interactive buttons used `<span>` tags with `onclick` handlers instead of semantic `<button>` or `<a>` elements.
+- **Duplicated Base64 assets:** Heavy SVG base64 strings were embedded multiple times across CSS variables and HTML.
+- **Hardcoded data:** Titles, prices, star ratings, and product images were hardcoded in HTML.
+- **Fragile global JS selectors:** Fixed IDs such as `#hstage` and `#rot` could collide when sections are duplicated in the Shopify Theme Editor.
+
+#### What I Changed and Why
+
+- Connected products dynamically using Shopify Liquid data such as `product.title`, `product.price`, `product.compare_at_price`, `product.featured_image`, `product.available`, and `product.url`.
+- Added sold-out product handling.
+- Added branded fallback rendering for missing product images.
+- Added two-line truncation for long product titles so cards remain aligned.
+- Scoped JavaScript to Shopify section containers and added `shopify:section:load` handling.
+- Added keyboard focus states and reduced-motion support.
+
+#### What I Would Do With More Time
+
+- Build an AJAX slide-out cart drawer.
+- Implement dynamic filtering using Shopify Search & Discovery.
+- Implement WebGL-based caustics for GPU-accelerated fluid effects.
+
+### 5. AI Workflow Notes
+
+#### What Was Delegated to AI
+
+- Extracting CSS variables and design-system tokens.
+- Modularizing the static HTML into Shopify Liquid sections and snippets.
+- Generating Shopify `{% schema %}` settings for merchant editability.
+- Converting the responsive CSS design system.
+- Generating initial README documentation.
+
+#### Where AI Failed / Required Manual Intervention
+
+- AI initially used duplicate element IDs such as `#hstage`, which caused problems when sections were duplicated or reordered.
+- AI generated incorrect Liquid comment blocks that swallowed `{% schema %}` sections and required manual debugging.
+- Manual verification was required for Shopify Theme Editor lifecycle behavior and edge cases.
+
+#### What I Would Systematize for 20 Similar Stores
+
+Build an automated CLI pipeline that:
+
+1. Parses a static prototype's HTML/CSS AST.
+2. Extracts design tokens and variables.
+3. Converts sections into standardized Dawn-compatible Liquid components.
+4. Generates Shopify JSON schemas.
+5. Validates the generated theme before deployment.
