@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "purelane-pillars",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
